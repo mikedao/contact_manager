@@ -34,6 +34,12 @@ describe 'the person view', type: :feature do
     end
   end
 
+  it 'has links to delete phone numbers' do
+    person.phone_numbers.each do |phone|
+      expect(page).to have_link('delete', href: phone_number_path(phone))
+    end
+  end
+
   it 'edits a phone number' do
     phone = person.phone_numbers.first
     old_number = phone.number
