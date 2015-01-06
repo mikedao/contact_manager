@@ -47,6 +47,9 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 
+  # Use Capybara for testing
+  gem 'capybara'
+
 end
 
 group :production do
