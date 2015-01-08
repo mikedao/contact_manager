@@ -1,16 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Company, :type => :model do
-  let(:acme) { Company.new(name: 'Acme') }
+  let(:company) { Company.new(name: 'Acme') }
 
   it 'is valid' do
-    expect(acme).to be_valid
+    expect(company).to be_valid
   end
 
-  it 'is invalud without a name' do
-    acme.name = nil
-    expect(acme).to_not be_valid
+  it 'is invalid without a name' do
+    company.name = nil
+    expect(company).to_not be_valid
   end
 
+  it 'responds with its phone numbers after theyre created' do
+    phone_number = company.phone_numbers.build(number: '333-4444')
+    expect(phone_number.number).to eq('333-4444')
+  end
 
 end
