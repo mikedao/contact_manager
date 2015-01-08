@@ -30,6 +30,24 @@ describe 'the person view', type: :feature do
       expect(page).to have_content('pork@pig.com')
     end
 
+    it 'has links to edit email addresses' do
+      person.email_addresses.each do |email_address|
+        expect(page).to have_link('edit', href: edit_email_address_path(email_address))
+      end
+    end
+
+    it 'edits an email address' do
+      email = person.email_addresses.first
+      old_email = email.address
+
+      first(:link, 'edit').click
+      page.fill_in('Address', with: 'new@email.com')
+      page.click_button('Update Email address')
+      expect(current_path).to eq(person_path(person))
+      expect(page).to have_content('new@email.com')
+      expect(page).to_not have_content(old_email)
+    end
+
   end
 
   describe 'phone numbers', type: :feature do
