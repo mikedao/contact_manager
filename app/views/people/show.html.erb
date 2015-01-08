@@ -18,6 +18,7 @@
     </li>
   <% end %>
 </ul>
+<%= link_to 'Add email address', new_email_address_path(person_id: @person.id) %>
 
 <ul>
   <% @person.email_addresses.each do |email_address| %>
